@@ -29,8 +29,6 @@ public class CalendarEventStepDefinition {
         Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
     }
 
-
-
     //TC4
     @When("user clicks on Create Calendar Event button")
     public void userClicksOnCreateCalendarEventButton() {
@@ -45,4 +43,20 @@ public class CalendarEventStepDefinition {
         String actualTitle = calendarEvents.getAllCalendarEventTitle();
         Assert.assertEquals(expectedTitle,actualTitle);
     }
+
+    @When("user clicks on {string} button")
+    public void userClicksOnButton(String createCalendarEvent) {
+        calendarEvents.clickCreateCalendarEventButton();
+    }
+
+    @Then("expand {string} menu")
+    public void expandMenu(String SaveAndClose) {
+        calendarEvents.clickExpandSaveAndCloseButton();
+    }
+
+    @And("verify that {string} , {string} , and {string} options are available")
+    public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
+        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose,SaveAndNew,Save));
+    }
 }
+
