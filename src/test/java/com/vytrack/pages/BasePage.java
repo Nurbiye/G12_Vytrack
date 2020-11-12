@@ -27,15 +27,20 @@ public abstract class BasePage {
     protected List<WebElement> loaderMask;
 
     public void navigateTo(String global,String subMenu){
+        //wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
         String menuXpath ="//span[.='%s']";
         String globalMenuXpath="(//span[contains(text(), '%s')])[1]";
 
+        BrowserUtils.wait(3);
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(globalMenuXpath,global))));
-        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(globalMenuXpath,global))));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(menuXpath,subMenu))));
-        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(menuXpath,subMenu))));
 
+        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(globalMenuXpath,global))));
+        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(menuXpath,subMenu))));
+
+        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(menuXpath,subMenu))));
+        BrowserUtils.wait(3);
     }
 
 

@@ -54,10 +54,39 @@ public class CalendarEvents extends BasePage {
 
     }
 
+    @FindBy(xpath = "//a[@title='Create Calendar event']")
+    private WebElement createCalendarEventButton;
+
+    @FindBy(xpath = "//a[@class='btn-success btn dropdown-toggle']")
+    private WebElement expandSaveAndCloseButton;
+
+   protected String saveAndCloseDropdownOption = "//li/button[contains(text(),'%s')]";
 
 
 
 
+
+     public void clickCreateCalendarEventButton(){
+        // BrowserUtils.wait(2);
+        // wait.until(ExpectedConditions.visibilityOf(createCalendarEventButton));
+         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
+         BrowserUtils.clickOnElement(createCalendarEventButton);
+     }
+
+     public void clickExpandSaveAndCloseButton(){
+         BrowserUtils.clickOnElement(expandSaveAndCloseButton);
+     }
+
+     public boolean optionsVerification(String SaveAndClose, String SaveAndNew, String Save){
+
+         WebElement SaveAndCloseVerification = driver.findElement(By.xpath(String.format(saveAndCloseDropdownOption,SaveAndClose)));
+         WebElement SaveAndNewVerification = driver.findElement(By.xpath(String.format(saveAndCloseDropdownOption,SaveAndNew)));
+         WebElement SaveVerification = driver.findElement(By.xpath(String.format(saveAndCloseDropdownOption,Save)));
+
+        return SaveAndCloseVerification.isDisplayed() && SaveAndNewVerification.isDisplayed() && SaveVerification.isDisplayed();
+
+
+     }
 
 
 
