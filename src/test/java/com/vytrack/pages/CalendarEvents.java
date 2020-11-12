@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import javax.swing.*;
+import javax.xml.xpath.XPath;
 
 public class CalendarEvents extends BasePage {
 
@@ -26,17 +27,24 @@ public class CalendarEvents extends BasePage {
 
     @FindBy(xpath = "//a[.='...']")
     private WebElement threeDotButton;
-
     protected String threeDotOptionsXpath = "//a[contains(@class,'mode-icon-only')][@title='%s']";
+
+    @FindBy(xpath = "//a[@title='Create Calendar event']")
+    private WebElement createCalendarEventBtn;
+
+    @FindBy(xpath ="//a[@title='Cancel']")
+    private WebElement cancelBtnUnderCreateEventBtn;
+
+    @FindBy(xpath = "//h1[@class='oro-subtitle']")
+    private WebElement AllCalendarEventTitle;
+
 
 
     public void testersMeetingCalendarEvent(String title){
-
         BrowserUtils.clickOnElement(filtersGridButton);
         BrowserUtils.clickOnElement(titleManageFiltersOption);
         BrowserUtils.enterText(textInputFilterManageTitle,title);
         BrowserUtils.clickOnElement(updateButtonFilterManageTitle);
-
     }
 
     public void hoverThreeDot(){
@@ -45,14 +53,26 @@ public class CalendarEvents extends BasePage {
     }
 
     public boolean threeDotOptionVerification(String view, String edit, String delete){
-
         WebElement viewThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,view)));
         WebElement editThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,edit)));
         WebElement deleteThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,delete)));
 
         return  viewThreeDotOption.isDisplayed()&& editThreeDotOption.isDisplayed()&& deleteThreeDotOption.isDisplayed();
-
     }
+
+
+    public void clickCreateCalendarEventBtn(){
+        BrowserUtils.clickOnElement(createCalendarEventBtn);
+    }
+
+    public void clickCancelBtn(){
+        BrowserUtils.clickOnElement(cancelBtnUnderCreateEventBtn);
+    }
+    public String getAllCalendarEventTitle(){
+        return AllCalendarEventTitle.getText().trim();
+    }
+
+
 
 
 
