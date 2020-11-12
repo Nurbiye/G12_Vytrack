@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features="src/test/resources/features",
         glue="com/vytrack/stepDefinitions",
-        tags="@login",
+        tags="@TC1",
         dryRun = false
 
 
