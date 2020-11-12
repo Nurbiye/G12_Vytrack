@@ -5,3 +5,5 @@
       Given user on the login page
       When user logs in as a "store manager"
       Then user should see Dashboard page
+
+
