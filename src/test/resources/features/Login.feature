@@ -4,7 +4,7 @@
     Scenario: As a user, I should able to login
       Given user on the login page
       When user logs in as a "store manager"
-      Then user should see Dashboard page
+      Then user should see "Dashboard" page
 
 
 
