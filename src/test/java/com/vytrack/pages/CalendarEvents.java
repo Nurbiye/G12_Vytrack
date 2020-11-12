@@ -44,7 +44,6 @@ public class CalendarEvents extends BasePage {
 
 
     public void testersMeetingCalendarEvent(String title){
-        BrowserUtils.clickOnElement(filtersGridButton);
         BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(gridButtonsXpath,"Filters"))));
         BrowserUtils.clickOnElement(titleManageFiltersOption);
         BrowserUtils.enterText(textInputFilterManageTitle,title);
