@@ -2,7 +2,7 @@ package com.vytrack.stepDefinitions;
 
 import com.vytrack.pages.CalendarEvents;
 import com.vytrack.utilities.BrowserUtils;
-import io.cucumber.java.en.And;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,8 +29,6 @@ public class CalendarEventStepDefinition {
     public void andOptionsAreAvailable(String view, String edit, String delete) {
         Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
     }
-
-
 
     //TC4
     @When("user clicks on Create Calendar Event button")
