@@ -32,14 +32,6 @@ public class CalendarEvents extends BasePage {
      */
     protected String gridButtonsXpath = "//a[@title='%s']";
 
-    @FindBy(xpath = "//a[@title='Create Calendar event']")
-    private WebElement createCalendarEventBtn;
-
-    @FindBy(xpath ="//a[@title='Cancel']")
-    private WebElement cancelBtnUnderCreateEventBtn;
-
-    @FindBy(xpath = "//h1[@class='oro-subtitle']")
-    private WebElement AllCalendarEventTitle;
 
 
 
@@ -75,6 +67,15 @@ public class CalendarEvents extends BasePage {
     }
 
 
+    @FindBy(xpath = "//a[@title='Create Calendar event']")
+    private WebElement createCalendarEventBtn;
+
+    @FindBy(xpath ="//a[@title='Cancel']")
+    private WebElement cancelBtnUnderCreateEventBtn;
+
+    @FindBy(xpath = "//h1[@class='oro-subtitle']")
+    private WebElement AllCalendarEventTitle;
+
     public void clickCreateCalendarEventBtn(){
         BrowserUtils.clickOnElement(createCalendarEventBtn);
     }
@@ -83,6 +84,7 @@ public class CalendarEvents extends BasePage {
         BrowserUtils.clickOnElement(cancelBtnUnderCreateEventBtn);
     }
     public String getAllCalendarEventTitle(){
+
         return AllCalendarEventTitle.getText().trim();
     }
 

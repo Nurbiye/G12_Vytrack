@@ -41,6 +41,7 @@ public class CalendarEventStepDefinition {
     }
     @Then("{string} subtitle is displayed")
     public void subtitleIsDisplayed(String expectedTitle) {
+        BrowserUtils.wait(5);
         String actualTitle = calendarEvents.getAllCalendarEventTitle();
         Assert.assertEquals(expectedTitle,actualTitle);
     }
