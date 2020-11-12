@@ -42,15 +42,20 @@ public abstract class BasePage {
      *    This approach will avoid a lot of exceptions and with this kind of logic your framework will be very stable
      */
     public void navigateTo(String global,String subMenu){
+        //wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
         String menuXpath ="//span[.='%s']";
         String globalMenuXpath="(//span[contains(text(), '%s')])[1]";
 
+        BrowserUtils.wait(3);
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(globalMenuXpath,global))));
-        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(globalMenuXpath,global))));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(menuXpath,subMenu))));
-        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(menuXpath,subMenu))));
 
+        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(globalMenuXpath,global))));
+        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(menuXpath,subMenu))));
+
+        BrowserUtils.clickOnElement(driver.findElement(By.xpath(String.format(menuXpath,subMenu))));
+        BrowserUtils.wait(3);
     }
 
 

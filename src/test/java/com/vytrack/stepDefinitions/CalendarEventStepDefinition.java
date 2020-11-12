@@ -1,6 +1,7 @@
 package com.vytrack.stepDefinitions;
 
 import com.vytrack.pages.CalendarEvents;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,4 +30,20 @@ public class CalendarEventStepDefinition {
         Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
 
     }
+
+    @When("user clicks on {string} button")
+    public void userClicksOnButton(String createCalendarEvent) {
+        calendarEvents.clickCreateCalendarEventButton();
+    }
+
+    @Then("expand {string} menu")
+    public void expandMenu(String SaveAndClose) {
+        calendarEvents.clickExpandSaveAndCloseButton();
+    }
+
+    @And("verify that {string} , {string} , and {string} options are available")
+    public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
+        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose,SaveAndNew,Save));
+    }
 }
+
