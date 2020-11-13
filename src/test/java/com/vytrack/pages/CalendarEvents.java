@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import javax.swing.*;
 import javax.xml.xpath.XPath;
+import java.util.List;
 
 public class CalendarEvents extends BasePage {
 
@@ -24,6 +25,11 @@ public class CalendarEvents extends BasePage {
 
     @FindBy(xpath = "//a[.='...']")
     private WebElement threeDotButton;
+
+    @FindBy(xpath = "//div[@class='dropdown-menu']//input[@type='checkbox']")
+    private List<WebElement> filterCheckboxList;
+
+
     protected String threeDotOptionsXpath = "//a[contains(@class,'mode-icon-only')][@title='%s']";
     /**
      * Dynamic locator that is responsible for Filters, Refresh, Reset buttons on the grid
@@ -31,6 +37,8 @@ public class CalendarEvents extends BasePage {
      * replace "Word" with a desired button name.
      */
     protected String gridButtonsXpath = "//a[@title='%s']";
+    protected String gridOptionsButton = "//a[@title='%s']";
+    protected String checkboxFilterXpath = "//label[.='%s']//..//..//input[@type='checkbox']";
 
 
 
@@ -121,8 +129,23 @@ public class CalendarEvents extends BasePage {
 
         return SaveAndCloseVerification.isDisplayed() && SaveAndNewVerification.isDisplayed() && SaveVerification.isDisplayed();
 
-
      }
+
+     public void clickOnGridOptionsButton(String option){
+        BrowserUtils.clickOnElement( driver.findElement(By.xpath(String.format(gridOptionsButton,option))));
+     }
+    public void GridSettingFilterCheckbox(String filter){
+        wait.until(ExpectedConditions.elementToBeClickable(Driver.getDriver().findElement(By.xpath(String.format(checkboxFilterXpath, filter)))));
+        BrowserUtils.clickOnElement(Driver.getDriver().findElement(By.xpath(String.format(checkboxFilterXpath, filter))));
+    }
+    public boolean titleFilterVerification(){
+        String expectedResult = "renderable";
+        String actualResult = Driver.getDriver().findElement(By.xpath("(//label[.='Title']//..//..)[1]")).getAttribute("class");
+        return expectedResult.equals(actualResult);
+    }
+
+
+
 
 
 

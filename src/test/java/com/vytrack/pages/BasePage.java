@@ -46,7 +46,7 @@ public abstract class BasePage {
         String menuXpath ="//span[.='%s']";
         String globalMenuXpath="(//span[contains(text(), '%s')])[1]";
 
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(5);
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format(globalMenuXpath,global))));
 

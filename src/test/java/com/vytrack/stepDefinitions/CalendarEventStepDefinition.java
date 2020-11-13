@@ -9,6 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.List;
+
 public class CalendarEventStepDefinition {
 
     CalendarEvents calendarEvents = new CalendarEvents();
@@ -59,6 +61,24 @@ public class CalendarEventStepDefinition {
     @And("verify that {string} , {string} , and {string} options are available")
     public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
         Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose,SaveAndNew,Save));
+    }
+
+    @When("user click on {string} button")
+    public void userClicksOnGridSettingsButton(String option) {
+        calendarEvents.clickOnGridOptionsButton(option);
+    }
+
+    @And("user selects next options below")
+    public void userSelectsNextOptionsBelow(List<String> checkboxes) {
+        for(String each : checkboxes ){
+            calendarEvents.GridSettingFilterCheckbox(each);
+        }
+
+    }
+
+    @Then("Title column still displayed")
+    public void titleColumnStillDisplayed() {
+        Assert.assertTrue(calendarEvents.titleFilterVerification());
     }
 }
 

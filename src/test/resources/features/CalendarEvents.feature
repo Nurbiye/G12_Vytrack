@@ -9,6 +9,17 @@
 Scenario: TC1 three dots case
   When user hovers on three dots for "Testers meeting"
   Then "View", "Edit" and "Delete" options are available
+@TC2
+Scenario: TC2 title column verification
+ When user click on "Grid Settings" button
+ And user selects next options below
+        |Calendar         |
+        |Start            |
+        |End              |
+        |Recurrent        |
+        |Recurrence       |
+        |Invitation status|
+ Then Title column still displayed
 
  @TC3
  Scenario: TC3 Expanding Save and Close menu
