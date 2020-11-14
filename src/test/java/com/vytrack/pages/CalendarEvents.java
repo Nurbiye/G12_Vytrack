@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
 import javax.xml.xpath.XPath;
@@ -97,7 +98,7 @@ public class CalendarEvents extends BasePage {
     }
 
 
-
+    //TC3
     @FindBy(xpath = "//a[@title='Create Calendar event']")
     private WebElement createCalendarEventButton;
 
@@ -107,12 +108,7 @@ public class CalendarEvents extends BasePage {
    protected String saveAndCloseDropdownOption = "//li/button[contains(text(),'%s')]";
 
 
-
-
-
      public void clickCreateCalendarEventButton(){
-        // BrowserUtils.wait(2);
-        // wait.until(ExpectedConditions.visibilityOf(createCalendarEventButton));
          wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
          BrowserUtils.clickOnElement(createCalendarEventButton);
      }
@@ -145,8 +141,52 @@ public class CalendarEvents extends BasePage {
     }
 
 
+    @FindBy(xpath = "//input[@data-name='recurrence-repeat']")
+    private WebElement repeatCheckbox;
+
+    //@FindBy(xpath = "//select[@data-name='recurrence-repeats']")
+    //private WebElement repeatsDropdown;
+
+    @FindBy(xpath = "//input[@value='monday']")
+    private WebElement mondayCheckBox;
+
+    @FindBy(xpath = "//input[@value='friday']")
+    private WebElement fridayCheckBox;
+
+//    @FindBy(xpath = "//div[@data-name='recurrence-summary']")
+ //   private WebElement displayedMessage;
 
 
+    public void clickRepeatCheckbox(){
+        BrowserUtils.clickOnElement(repeatCheckbox);
+    }
+
+    public void selectFromRepeatsDropdown() {
+
+        Select selectFromRepeatsDropdown = new Select(driver.findElement(By.xpath("//select[@data-name='recurrence-repeats']")));
+        selectFromRepeatsDropdown.selectByVisibleText("Weekly");
+    }
+
+    public void clickOnMondayCheckbox(){
+        BrowserUtils.clickOnElement(mondayCheckBox);
+
+    }
+
+    public void clickOnFridayCheckbox(){
+        BrowserUtils.clickOnElement(fridayCheckBox);
+    }
+
+    public void verifyMondayAndFridayDisplayed(){
+        mondayCheckBox.isDisplayed();
+        fridayCheckBox.isDisplayed();
+
+    }
+
+    public boolean displayedMessageVerification(){
+        String expectedMessage = "Weekly every 1 week on Monday, Friday";
+        String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
+        return expectedMessage.equals(actualMessage);
+    }
 
 
 

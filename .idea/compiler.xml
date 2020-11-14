@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="G12_Vytrack_sevdaT" />
         <module name="G12_Vytrack" />
+        <module name="G12_Vytrack_sevdaT" />
       </profile>
     </annotationProcessing>
   </component>

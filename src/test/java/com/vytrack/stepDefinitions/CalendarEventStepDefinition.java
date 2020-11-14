@@ -48,6 +48,7 @@ public class CalendarEventStepDefinition {
         Assert.assertEquals(expectedTitle,actualTitle);
     }
 
+    //TC3
     @When("user clicks on {string} button")
     public void userClicksOnButton(String createCalendarEvent) {
         calendarEvents.clickCreateCalendarEventButton();
@@ -79,6 +80,42 @@ public class CalendarEventStepDefinition {
     @Then("Title column still displayed")
     public void titleColumnStillDisplayed() {
         Assert.assertTrue(calendarEvents.titleFilterVerification());
+    }
+
+
+
+
+    @Then("user selects {string} checkbox")
+    public void userSelectsCheckbox(String Repeat) {
+        BrowserUtils.wait(3);
+        calendarEvents.clickRepeatCheckbox();
+    }
+
+    @And("user selects {string} options as a {string} option")
+    public void userSelectsOptionsAsAOption(String Weekly, String Repeat) {
+        BrowserUtils.wait(3);
+        calendarEvents.selectFromRepeatsDropdown();
+    }
+
+    @And("user select {string} options as a {string} options")
+    public void userSelectOptionsAsAOptions(String MondayAndFriday, String RepeatOn) {
+        BrowserUtils.wait(1);
+        calendarEvents.clickOnMondayCheckbox();
+        BrowserUtils.wait(1);
+        calendarEvents.clickOnFridayCheckbox();
+    }
+
+    @Then("user verifies that {string} options are selected")
+    public void userVerifiesThatOptionsAreSelected(String MondayAndFriday) {
+        BrowserUtils.wait(2);
+       calendarEvents.verifyMondayAndFridayDisplayed();
+
+    }
+
+    @Then("user verifies the following message as a summary is displayed: {string}")
+    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String message) {
+        BrowserUtils.wait(2);
+        Assert.assertTrue(calendarEvents.displayedMessageVerification());
     }
 }
 
