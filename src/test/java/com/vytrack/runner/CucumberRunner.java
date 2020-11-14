@@ -11,8 +11,6 @@ import org.junit.runner.RunWith;
         glue="com/vytrack/stepDefinitions",
         tags="@TC12",
         dryRun = false
-
-
 )
 
 public class CucumberRunner {
