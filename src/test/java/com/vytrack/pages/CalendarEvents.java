@@ -144,17 +144,11 @@ public class CalendarEvents extends BasePage {
     @FindBy(xpath = "//input[@data-name='recurrence-repeat']")
     private WebElement repeatCheckbox;
 
-    //@FindBy(xpath = "//select[@data-name='recurrence-repeats']")
-    //private WebElement repeatsDropdown;
-
     @FindBy(xpath = "//input[@value='monday']")
     private WebElement mondayCheckBox;
 
     @FindBy(xpath = "//input[@value='friday']")
     private WebElement fridayCheckBox;
-
-//    @FindBy(xpath = "//div[@data-name='recurrence-summary']")
- //   private WebElement displayedMessage;
 
 
     public void clickRepeatCheckbox(){
@@ -162,14 +156,12 @@ public class CalendarEvents extends BasePage {
     }
 
     public void selectFromRepeatsDropdown() {
-
         Select selectFromRepeatsDropdown = new Select(driver.findElement(By.xpath("//select[@data-name='recurrence-repeats']")));
         selectFromRepeatsDropdown.selectByVisibleText("Weekly");
     }
 
     public void clickOnMondayCheckbox(){
         BrowserUtils.clickOnElement(mondayCheckBox);
-
     }
 
     public void clickOnFridayCheckbox(){
@@ -179,7 +171,6 @@ public class CalendarEvents extends BasePage {
     public void verifyMondayAndFridayDisplayed(){
         mondayCheckBox.isDisplayed();
         fridayCheckBox.isDisplayed();
-
     }
 
     public boolean displayedMessageVerification(){
