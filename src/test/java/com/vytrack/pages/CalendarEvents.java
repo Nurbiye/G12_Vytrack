@@ -172,12 +172,61 @@ public class CalendarEvents extends BasePage {
         mondayCheckBox.isDisplayed();
         fridayCheckBox.isDisplayed();
     }
-
-    public boolean displayedMessageVerification(){
+//TC12
+    public boolean displayedMessageVerification(String DisplayedMessage){
         String expectedMessage = "Weekly every 1 week on Monday, Friday";
         String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
         return expectedMessage.equals(actualMessage);
     }
+// TC11
+      public boolean MessageVerification(){
+      String expectedMessage = "Daily every 1 day, end by Nov 18, 2021";
+      String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
+      return expectedMessage.equals(actualMessage);
+}
+
+
+    @FindBy(xpath = "(//input[@type='radio'])[5]")
+    private WebElement ByRadioButton;
+
+    @FindBy(xpath = "(//input[@placeholder='Choose a date'])[3]")
+    private WebElement chooseADateInputBox;
+
+    @FindBy(linkText = "18")
+    private WebElement selectDay;
+
+    @FindBy(xpath = "(//option[@value='10'])[2]")
+    private WebElement selectMonth;
+
+    @FindBy(xpath = "//option[@value='2021']")
+    private WebElement selectYear;
+
+    public void clickOnRadioButton(){
+        ByRadioButton.click();
+    }
+
+    public void clickOnChooseADateInputBox(){
+        chooseADateInputBox.click();
+    }
+
+    /**
+     * In this method we have to select 'year' first.
+     * Otherwise, it doesn't click on the year button and the test fails.
+     */
+
+    public void selectEndsDate(){
+        BrowserUtils.wait(2);
+        selectYear.click();
+
+        BrowserUtils.wait(2);
+        selectMonth.click();
+
+        BrowserUtils.wait(2);
+        selectDay.click();
+    }
+
+
+
 
 
 
