@@ -32,6 +32,44 @@ public class CalendarEventStepDefinition {
         Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
     }
 
+
+    //TC2
+    @When("user click on {string} button")
+    public void userClicksOnGridSettingsButton(String option) {
+        calendarEvents.clickOnGridOptionsButton(option);
+    }
+
+    @And("user selects next options below")
+    public void userSelectsNextOptionsBelow(List<String> checkboxes) {
+        for (String each : checkboxes) {
+            calendarEvents.GridSettingFilterCheckbox(each);
+        }
+    }
+
+    @Then("Title column still displayed")
+    public void titleColumnStillDisplayed() {
+
+        Assert.assertTrue(calendarEvents.titleFilterVerification());
+    }
+
+
+    //TC3
+    @When("user clicks on {string} button")
+    public void userClicksOnButton(String createCalendarEvent) {
+        calendarEvents.clickCreateCalendarEventButton();
+    }
+
+    @Then("expand {string} menu")
+    public void expandMenu(String SaveAndClose) {
+        calendarEvents.clickExpandSaveAndCloseButton();
+    }
+
+    @And("verify that {string} , {string} , and {string} options are available")
+    public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
+        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose, SaveAndNew, Save));
+    }
+
+
     //TC4
     @When("user clicks on Create Calendar Event button")
     public void userClicksOnCreateCalendarEventButton() {
@@ -48,43 +86,47 @@ public class CalendarEventStepDefinition {
         Assert.assertEquals(expectedTitle,actualTitle);
     }
 
-    //TC3
-    @When("user clicks on {string} button")
-    public void userClicksOnButton(String createCalendarEvent) {
-        calendarEvents.clickCreateCalendarEventButton();
+
+    //TC8
+
+    @And("user check {string}checkbox")
+    public void userCheckCheckbox(String string) {
+        BrowserUtils.wait(2);
+        calendarEvents.clickRepeatCheckBox();
     }
 
-    @Then("expand {string} menu")
-    public void expandMenu(String SaveAndClose) {
-        calendarEvents.clickExpandSaveAndCloseButton();
+    @Then("{string} checkbox is selected")
+    public void checkboxIsSelected(String repeat) {
+BrowserUtils.wait(3);
+        Assert.assertTrue(calendarEvents.RepeatBoxIsSelectedVerification());
     }
 
-    @And("verify that {string} , {string} , and {string} options are available")
-    public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
-        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose,SaveAndNew,Save));
+    @And("{string} is selected by default")
+    public void isSelectedByDefault(String daily) {
+        BrowserUtils.wait(3);
+        Assert.assertTrue(calendarEvents.RepeatDropDownVerification());
     }
-
-    @When("user click on {string} button")
-    public void userClicksOnGridSettingsButton(String option) {
-        calendarEvents.clickOnGridOptionsButton(option);
-    }
-
-    @And("user selects next options below")
-    public void userSelectsNextOptionsBelow(List<String> checkboxes) {
-        for(String each : checkboxes ){
-            calendarEvents.GridSettingFilterCheckbox(each);
-        }
-
-    }
-
-    @Then("Title column still displayed")
-    public void titleColumnStillDisplayed() {
-        Assert.assertTrue(calendarEvents.titleFilterVerification());
+    @And("other following options are also available in {string} drop-down")
+    public void otherFollowingOptionsAreAlsoAvailableInDropDown(String string) {
+BrowserUtils.wait(2);
+ calendarEvents.clickRepeatDropdown();
+ BrowserUtils.wait(1);
+Assert.assertTrue(calendarEvents.RepeatsWeeklyOptionsVerification());
+        BrowserUtils.wait(2);
+Assert.assertTrue(calendarEvents.RepeatsMonthlyOptionsVerification());
+        BrowserUtils.wait(2);
+Assert.assertTrue(calendarEvents.RepeatsYearlyOptionsVerification());
     }
 
 
 
 
+
+
+
+
+
+ //TC12
     @Then("user selects {string} checkbox")
     public void userSelectsCheckbox(String Repeat) {
         BrowserUtils.wait(3);
