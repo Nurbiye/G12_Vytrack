@@ -48,6 +48,14 @@ Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selec
 
 
 
+  @TC10
+  Scenario: TC10 Verifying the message displayed after choosing number of occurrences as an Ends option
+    When user clicks on "Create Calendar Event" button
+    Then user selects "Repeat" checkbox
+    When user select "After 10 occurrences" as an "Ends" option
+    Then user verify the following message as a summary is displayed: "Summary: Daily every 1 day, end after 10 occurrences"
+
+
     @TC11
     Scenario: TC11 Verifying the message is displayed after choosing date as End option
       When user clicks on "Create Calendar Event" button
