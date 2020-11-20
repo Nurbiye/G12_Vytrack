@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import javax.swing.*;
 import javax.xml.xpath.XPath;
@@ -145,7 +146,51 @@ public class CalendarEvents extends BasePage {
     }
 
 
+    @FindBy(xpath = "//input[@data-name='recurrence-repeat']")
+    private WebElement RepeatCheckBox;
 
+     @FindBy(xpath = "//select[@data-name='recurrence-repeats']")
+    private WebElement RepeatDropDown;
+
+     public void clickRepeatCheckBox(){
+
+         RepeatCheckBox.click();
+     }
+     public void clickRepeatDropdown(){
+         Select select = new Select(RepeatDropDown);
+         RepeatDropDown.click();
+     }
+
+     public boolean RepeatBoxIsSelectedVerification(){
+            return  RepeatCheckBox.isSelected();
+     }
+
+     public boolean RepeatDropDownVerification(){
+
+         String expectedOption1="Daily";
+         String actualOption1 = driver.findElement(By.xpath("(//option[@value='daily'])[1]")).getText();
+         return expectedOption1.equals(actualOption1);
+     }
+
+
+    public boolean RepeatsWeeklyOptionsVerification(){
+         String expectedOption2= "Weekly";
+         WebElement actualOption2 = driver.findElement(By.xpath("(//option[@value='weekly'])[1]"));
+return actualOption2.isEnabled();
+
+    }
+
+    public boolean RepeatsMonthlyOptionsVerification(){
+        String expectedOption3= "Monthly";
+        WebElement actualOption3 = driver.findElement(By.xpath("(//option[@value='monthly'])[1]"));
+        return  actualOption3.isEnabled();
+    }
+
+    public boolean RepeatsYearlyOptionsVerification(){
+        String expectedOption4= "Yearly";
+        WebElement actualOption4 = driver.findElement(By.xpath("(//option[@value='yearly'])[1]"));
+        return  actualOption4.isEnabled();
+    }
 
 
 

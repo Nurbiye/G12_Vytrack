@@ -33,3 +33,24 @@ Scenario: All Calender Event displays when cancel create calender event
   And user clicks on Cancel button
   Then "All Calendar Events" subtitle is displayed
 
+@TC8
+Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selected by default under "Repeat" dropdown
+  When user clicks on "Create Calendar Event" button
+  And user check "Repeat"checkbox
+  Then "Repeat" checkbox is selected
+  And "Daily" is selected by default
+  And other following options are also available in "Repeats" drop-down
+
+
+
+@TC9
+
+
+  @TC12
+  Scenario: TC12 Verifying "Repeat" checkbox message is displayed after selecting options
+    When user clicks on "Create Calendar Event" button
+    Then user selects "Repeat" checkbox
+    And user selects "Weekly" options as a "Repeat" option
+    And user select "Monday and Friday" options as a "Repeat On" options
+    Then user verifies that "Monday and Friday" options are selected
+    Then user verifies the following message as a summary is displayed: "Summary: Weekly every one week on Monday, Friday"

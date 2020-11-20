@@ -18,36 +18,42 @@ public class CalendarEventStepDefinition {
     //TC1
     @Given("user navigates to {string} and {string}")
     public void user_navigates_to_and(String string1, String string2) {
-        calendarEvents.navigateTo(string1,string2);
+        calendarEvents.navigateTo(string1, string2);
     }
 
     @When("user hovers on three dots for {string}")
     public void userHoversOnThreeDotsFor(String title) {
-            calendarEvents.testersMeetingCalendarEvent(title);
-            calendarEvents.hoverThreeDot();
+        calendarEvents.testersMeetingCalendarEvent(title);
+        calendarEvents.hoverThreeDot();
     }
 
     @Then("{string}, {string} and {string} options are available")
     public void andOptionsAreAvailable(String view, String edit, String delete) {
-        Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
+        Assert.assertTrue(calendarEvents.threeDotOptionVerification(view, edit, delete));
     }
 
-    //TC4
-    @When("user clicks on Create Calendar Event button")
-    public void userClicksOnCreateCalendarEventButton() {
-       calendarEvents.clickCreateCalendarEventBtn();
-    }
-    @And("user clicks on Cancel button")
-    public void userClicksOnCancelButton() {
-     calendarEvents.clickCancelBtn();
-    }
-    @Then("{string} subtitle is displayed")
-    public void subtitleIsDisplayed(String expectedTitle) {
-        BrowserUtils.wait(5);
-        String actualTitle = calendarEvents.getAllCalendarEventTitle();
-        Assert.assertEquals(expectedTitle,actualTitle);
+
+    //TC2
+    @When("user click on {string} button")
+    public void userClicksOnGridSettingsButton(String option) {
+        calendarEvents.clickOnGridOptionsButton(option);
     }
 
+    @And("user selects next options below")
+    public void userSelectsNextOptionsBelow(List<String> checkboxes) {
+        for (String each : checkboxes) {
+            calendarEvents.GridSettingFilterCheckbox(each);
+        }
+    }
+
+    @Then("Title column still displayed")
+    public void titleColumnStillDisplayed() {
+
+        Assert.assertTrue(calendarEvents.titleFilterVerification());
+    }
+
+
+    //TC3
     @When("user clicks on {string} button")
     public void userClicksOnButton(String createCalendarEvent) {
         calendarEvents.clickCreateCalendarEventButton();
@@ -60,25 +66,64 @@ public class CalendarEventStepDefinition {
 
     @And("verify that {string} , {string} , and {string} options are available")
     public void verifyThatAndOptionsAreAvailable(String SaveAndClose, String SaveAndNew, String Save) {
-        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose,SaveAndNew,Save));
+        Assert.assertTrue(calendarEvents.optionsVerification(SaveAndClose, SaveAndNew, Save));
     }
 
-    @When("user click on {string} button")
-    public void userClicksOnGridSettingsButton(String option) {
-        calendarEvents.clickOnGridOptionsButton(option);
+
+    //TC4
+    @When("user clicks on Create Calendar Event button")
+    public void userClicksOnCreateCalendarEventButton() {
+        calendarEvents.clickCreateCalendarEventBtn();
     }
 
-    @And("user selects next options below")
-    public void userSelectsNextOptionsBelow(List<String> checkboxes) {
-        for(String each : checkboxes ){
-            calendarEvents.GridSettingFilterCheckbox(each);
-        }
-
+    @And("user clicks on Cancel button")
+    public void userClicksOnCancelButton() {
+        calendarEvents.clickCancelBtn();
     }
 
-    @Then("Title column still displayed")
-    public void titleColumnStillDisplayed() {
-        Assert.assertTrue(calendarEvents.titleFilterVerification());
+    @Then("{string} subtitle is displayed")
+    public void subtitleIsDisplayed(String expectedTitle) {
+        BrowserUtils.wait(5);
+        String actualTitle = calendarEvents.getAllCalendarEventTitle();
+        Assert.assertEquals(expectedTitle, actualTitle);
     }
+
+
+    //TC8
+
+    @And("user check {string}checkbox")
+    public void userCheckCheckbox(String string) {
+        BrowserUtils.wait(2);
+        calendarEvents.clickRepeatCheckBox();
+    }
+
+    @Then("{string} checkbox is selected")
+    public void checkboxIsSelected(String repeat) {
+BrowserUtils.wait(3);
+        Assert.assertTrue(calendarEvents.RepeatBoxIsSelectedVerification());
+    }
+
+    @And("{string} is selected by default")
+    public void isSelectedByDefault(String daily) {
+        BrowserUtils.wait(3);
+        Assert.assertTrue(calendarEvents.RepeatDropDownVerification());
+    }
+    @And("other following options are also available in {string} drop-down")
+    public void otherFollowingOptionsAreAlsoAvailableInDropDown(String string) {
+BrowserUtils.wait(2);
+ calendarEvents.clickRepeatDropdown();
+ BrowserUtils.wait(1);
+Assert.assertTrue(calendarEvents.RepeatsWeeklyOptionsVerification());
+        BrowserUtils.wait(2);
+Assert.assertTrue(calendarEvents.RepeatsMonthlyOptionsVerification());
+        BrowserUtils.wait(2);
+Assert.assertTrue(calendarEvents.RepeatsYearlyOptionsVerification());
+    }
+
+
+
+
+
+
 }
 
