@@ -109,13 +109,41 @@ public class CalendarEventStepDefinition {
     public void userVerifiesThatOptionsAreSelected(String MondayAndFriday) {
         BrowserUtils.wait(2);
        calendarEvents.verifyMondayAndFridayDisplayed();
-
     }
+
 
     @Then("user verifies the following message as a summary is displayed: {string}")
-    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String message) {
+    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String displayedMessage) {
         BrowserUtils.wait(2);
-        Assert.assertTrue(calendarEvents.displayedMessageVerification());
+        Assert.assertTrue(calendarEvents.displayedMessageVerification(displayedMessage));
     }
+
+//    @Then("user verifies the following message as a summary is displayed: {string}")
+//    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed() {
+//        BrowserUtils.wait(2);
+//        Assert.assertTrue(calendarEvents.displayedMessageVerification());
+//    }
+
+
+    @And("user selects {string} as an {string} option")
+    public void userSelectsAsAnOption(String Nov18_2021, String EndsOption) {
+        calendarEvents.clickOnRadioButton();
+        BrowserUtils.wait(1);
+        calendarEvents.clickOnChooseADateInputBox();
+        BrowserUtils.wait(2);
+        calendarEvents.selectEndsDate();
+
+    }
+
+    @Then("user sees the following message as a summary is displayed: {string}")
+    public void userSeesTheFollowingMessageAsASummaryIsDisplayed(String message) {
+        BrowserUtils.wait(2);
+        Assert.assertTrue(calendarEvents.MessageVerification());
+    }
+
+
+//    @Then("user verifies the following message as a summary is displayed:{string}")
+//    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String arg0) {
+//    }
 }
 
