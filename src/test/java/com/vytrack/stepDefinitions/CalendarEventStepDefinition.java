@@ -118,12 +118,6 @@ public class CalendarEventStepDefinition {
         Assert.assertTrue(calendarEvents.displayedMessageVerification(displayedMessage));
     }
 
-//    @Then("user verifies the following message as a summary is displayed: {string}")
-//    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed() {
-//        BrowserUtils.wait(2);
-//        Assert.assertTrue(calendarEvents.displayedMessageVerification());
-//    }
-
 
     @And("user selects {string} as an {string} option")
     public void userSelectsAsAnOption(String Nov18_2021, String EndsOption) {
@@ -141,9 +135,21 @@ public class CalendarEventStepDefinition {
         Assert.assertTrue(calendarEvents.MessageVerification());
     }
 
+    @When("user select {string} as an {string} option")
+    public void userSelectAsAnOption(String occurrences, String Ends) {
+        BrowserUtils.wait(2);
+        calendarEvents.clickAfterRadioBtn();
+        BrowserUtils.wait(2);
+        calendarEvents.sendKeysOccurrencesInputBox();
+    }
 
-//    @Then("user verifies the following message as a summary is displayed:{string}")
-//    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String arg0) {
-//    }
+    @Then("user verify the following message as a summary is displayed: {string}")
+    public void userVerifyTheFollowingMessageAsASummaryIsDisplayed(String arg0) {
+        BrowserUtils.wait(2);
+        Assert.assertTrue(calendarEvents.verifyMessage());
+    }
+
+
+
 }
 

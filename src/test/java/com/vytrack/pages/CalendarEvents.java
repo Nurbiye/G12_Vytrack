@@ -178,12 +178,7 @@ public class CalendarEvents extends BasePage {
         String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
         return expectedMessage.equals(actualMessage);
     }
-// TC11
-      public boolean MessageVerification(){
-      String expectedMessage = "Daily every 1 day, end by Nov 18, 2021";
-      String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
-      return expectedMessage.equals(actualMessage);
-}
+
 
 
     @FindBy(xpath = "(//input[@type='radio'])[5]")
@@ -225,9 +220,37 @@ public class CalendarEvents extends BasePage {
         selectDay.click();
     }
 
+    // TC11
+    public boolean MessageVerification(){
+        String expectedMessage = "Daily every 1 day, end by Nov 18, 2021";
+        String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
+        return expectedMessage.equals(actualMessage);
+    }
+
+    // TC10
+    @FindBy(xpath = "(//input[@type='radio'])[4]")
+    private  WebElement afterRadioButton;
+
+    @FindBy(xpath = "(//input[@class='recurrence-subview-control__number'])[7]")
+    private WebElement occurrencesInputBox;
 
 
+    public void clickAfterRadioBtn(){
+        afterRadioButton.click();
+    }
 
+    public void sendKeysOccurrencesInputBox(){
+        occurrencesInputBox.sendKeys("10");
+        occurrencesInputBox.click();
+    }
+
+
+    public boolean verifyMessage(){
+        String expectedMessage = "Daily every 1 day, end after 10 occurrences";
+        String actualMessage = Driver.getDriver().findElement(By.xpath("//div[@data-name='recurrence-summary']")).getText();
+        return expectedMessage.equals(actualMessage);
+
+    }
 
 
 }
