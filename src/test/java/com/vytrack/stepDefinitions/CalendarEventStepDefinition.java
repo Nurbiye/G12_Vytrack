@@ -18,18 +18,18 @@ public class CalendarEventStepDefinition {
     //TC1
     @Given("user navigates to {string} and {string}")
     public void user_navigates_to_and(String string1, String string2) {
-        calendarEvents.navigateTo(string1,string2);
+        calendarEvents.navigateTo(string1, string2);
     }
 
     @When("user hovers on three dots for {string}")
     public void userHoversOnThreeDotsFor(String title) {
-            calendarEvents.testersMeetingCalendarEvent(title);
-            calendarEvents.hoverThreeDot();
+        calendarEvents.testersMeetingCalendarEvent(title);
+        calendarEvents.hoverThreeDot();
     }
 
     @Then("{string}, {string} and {string} options are available")
     public void andOptionsAreAvailable(String view, String edit, String delete) {
-        Assert.assertTrue(calendarEvents.threeDotOptionVerification(view,edit,delete));
+        Assert.assertTrue(calendarEvents.threeDotOptionVerification(view, edit, delete));
     }
 
 
@@ -51,6 +51,8 @@ public class CalendarEventStepDefinition {
 
         Assert.assertTrue(calendarEvents.titleFilterVerification());
     }
+
+
 
 
     //TC3
@@ -79,11 +81,12 @@ public class CalendarEventStepDefinition {
     public void userClicksOnCancelButton() {
      calendarEvents.clickCancelBtn();
     }
+
     @Then("{string} subtitle is displayed")
     public void subtitleIsDisplayed(String expectedTitle) {
         BrowserUtils.wait(5);
         String actualTitle = calendarEvents.getAllCalendarEventTitle();
-        Assert.assertEquals(expectedTitle,actualTitle);
+        Assert.assertEquals(expectedTitle, actualTitle);
     }
 
 
@@ -106,6 +109,7 @@ BrowserUtils.wait(3);
         BrowserUtils.wait(3);
         Assert.assertTrue(calendarEvents.RepeatDropDownVerification());
     }
+
     @And("other following options are also available in {string} drop-down")
     public void otherFollowingOptionsAreAlsoAvailableInDropDown(String string) {
 BrowserUtils.wait(2);
@@ -151,13 +155,52 @@ Assert.assertTrue(calendarEvents.RepeatsYearlyOptionsVerification());
     public void userVerifiesThatOptionsAreSelected(String MondayAndFriday) {
         BrowserUtils.wait(2);
        calendarEvents.verifyMondayAndFridayDisplayed();
-
     }
+
 
     @Then("user verifies the following message as a summary is displayed: {string}")
-    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String message) {
+    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String displayedMessage) {
         BrowserUtils.wait(2);
-        Assert.assertTrue(calendarEvents.displayedMessageVerification());
+        Assert.assertTrue(calendarEvents.displayedMessageVerification(displayedMessage));
     }
+
+
+    @And("user selects {string} as an {string} option")
+    public void userSelectsAsAnOption(String Nov18_2021, String EndsOption) {
+        calendarEvents.clickOnRadioButton();
+        BrowserUtils.wait(1);
+        calendarEvents.clickOnChooseADateInputBox();
+        BrowserUtils.wait(2);
+        calendarEvents.selectEndsDate();
+
+    }
+
+    @Then("user sees the following message as a summary is displayed: {string}")
+    public void userSeesTheFollowingMessageAsASummaryIsDisplayed(String message) {
+        BrowserUtils.wait(2);
+        Assert.assertTrue(calendarEvents.MessageVerification());
+    }
+
+    @When("user select {string} as an {string} option")
+    public void userSelectAsAnOption(String occurrences, String Ends) {
+        BrowserUtils.wait(2);
+        calendarEvents.clickAfterRadioBtn();
+        BrowserUtils.wait(2);
+        calendarEvents.sendKeysOccurrencesInputBox();
+    }
+
+    @Then("user verify the following message as a summary is displayed: {string}")
+    public void userVerifyTheFollowingMessageAsASummaryIsDisplayed(String arg0) {
+        BrowserUtils.wait(2);
+        Assert.assertTrue(calendarEvents.verifyMessage());
+    }
+
+
+
+//    @Then("user verifies the following message as a summary is displayed:{string}")
+//    public void userVerifiesTheFollowingMessageAsASummaryIsDisplayed(String arg0) {
+//    }
+
+
 }
 
