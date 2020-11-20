@@ -91,7 +91,6 @@ public class CalendarEventStepDefinition {
 
 
     //TC8
-
     @And("user check {string}checkbox")
     public void userCheckCheckbox(String string) {
         BrowserUtils.wait(2);

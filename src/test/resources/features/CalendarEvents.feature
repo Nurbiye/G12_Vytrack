@@ -34,6 +34,7 @@ Scenario: All Calender Event displays when cancel create calender event
   Then "All Calendar Events" subtitle is displayed
 
 
+
 @TC8
 Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selected by default under "Repeat" dropdown
   When user clicks on "Create Calendar Event" button
@@ -44,7 +45,6 @@ Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selec
 
 
 
-@TC9
 
 
 
