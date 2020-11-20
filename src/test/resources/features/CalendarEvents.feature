@@ -33,6 +33,7 @@ Scenario: All Calender Event displays when cancel create calender event
   And user clicks on Cancel button
   Then "All Calendar Events" subtitle is displayed
 
+
 @TC8
 Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selected by default under "Repeat" dropdown
   When user clicks on "Create Calendar Event" button
@@ -44,6 +45,16 @@ Scenario:Verify "Repeat"checkbox is selected after clicking and "Daily" is selec
 
 
 @TC9
+
+
+
+    @TC11
+    Scenario: TC11 Verifying the message is displayed after choosing date as End option
+      When user clicks on "Create Calendar Event" button
+      Then user selects "Repeat" checkbox
+      And user selects "Nov 18, 2021" as an "Ends" option
+      Then user sees the following message as a summary is displayed: "Summary: Daily every 1 day, end by Nov 18, 2021"
+
 
 
   @TC12
