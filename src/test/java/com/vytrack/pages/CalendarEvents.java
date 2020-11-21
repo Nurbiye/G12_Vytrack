@@ -66,8 +66,11 @@ public class CalendarEvents extends BasePage {
      * @return boolean value for the assertion
      */
     public boolean threeDotOptionVerification(String view, String edit, String delete){
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(threeDotOptionsXpath,view)))));
         WebElement viewThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,view)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(threeDotOptionsXpath,edit)))));
         WebElement editThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,edit)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(String.format(threeDotOptionsXpath,delete)))));
         WebElement deleteThreeDotOption = driver.findElement(By.xpath(String.format(threeDotOptionsXpath,delete)));
 
         return  viewThreeDotOption.isDisplayed()&& editThreeDotOption.isDisplayed()&& deleteThreeDotOption.isDisplayed();
